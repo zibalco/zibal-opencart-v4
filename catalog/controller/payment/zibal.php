@@ -465,7 +465,8 @@ class Zibal extends \Opencart\System\Engine\Controller {
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'zibal Rest Api v4');
+        // Tells Zibal which plugin sent the request; keep the version in step with install.json.
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Zibal-OpenCart4-Plugin/1.2 (OpenCart/' . (defined('VERSION') ? VERSION : 'unknown') . ')');
         // Zibal's API only accepts JSON bodies.
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Accept: application/json'));
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
